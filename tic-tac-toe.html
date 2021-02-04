@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      .button {
+        width:50px;
+        height: 50px;
+        font-size: 15px;
+        line-height: 26px;
+        padding: 14px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="board">
+
+
+    <div class="row">
+      <button type="button" class="button" onclick="play(this,0)"></button>
+      <button type="button" class="button" onclick="play(this,1)"></button>
+      <button type="button" class="button" onclick="play(this,2)"></button>
+    </div>
+    <div class="row">
+      <button type="button" class="button" onclick="play(this,3)"></button>
+      <button type="button" class="button" onclick="play(this,4)"></button>
+      <button type="button" class="button" onclick="play(this,5)"></button>
+    </div>
+    <div class="row">
+      <button type="button" class="button" onclick="play(this,6)"></button>
+      <button type="button" class="button" onclick="play(this,7)"></button>
+      <button type="button" class="button" onclick="play(this,8)"></button>
+    </div>
+    <div class="" id="message">
+
+    </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+
+  let message = document.getElementById('message');
+  let player = 'X';
+
+  message.innerText = 'Player: ' + player + ' turn';
+
+  let board = [];
+
+  for(let i = 0; i < 9; i++) {
+    board[i] = -1;
+  };
+
+  const play = (elem,inx) => {
+    if(board[inx] != -1){
+      message.innerText = 'Opps... try agian!' +' Player: ' + player + ' turn'
+      return;
+    }
+    elem.innerText = player;
+
+    board[inx] = player;
+    if(player == 'X'){
+      player = 'O';
+    }
+    else{
+      player = 'X';
+    }
+    message.innerText = 'Player: ' + player + ' turn';
+    let winner = check_win(board);
+
+    if(winner!=-1){
+      message.innerText = 'The winner is ' + winner;
+    }
+    else{
+      if(!(board.includes(-1))){
+        message.innerText = 'No winner';
+      }
+    }
+  }
+
+
+  const check_win = (board) => {
+      const win_cond = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+      for (item of win_cond) {
+        if (  board[item[0]] === board[item[1]] && board[item[1]] === board[item[2]] ){
+                if (board[item[0]] != -1) {
+                    return board[item[0]];
+                }
+         }
+      }
+      return -1;
+  }
+
+  </script>
+</html>

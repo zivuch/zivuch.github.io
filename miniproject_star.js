@@ -7,6 +7,7 @@ async function fetchSomeone(url) {
         let response = await fetch(url,{
          "credentials": "same-origin",
         });
+        console.log(1, url);
         if (response.status !== 200){
             throw Error;
         }
@@ -20,7 +21,6 @@ async function fetchSomeone(url) {
 async function findSomeone(){
     let rnd = parseInt(Math.random()*83)
     let url = 'https://swapi.dev/api/people/'+rnd;
-    console.log(url);
     fetchSomeone(url);
 }
 

@@ -4,10 +4,13 @@ async function fetchSomeone(url) {
     document.getElementById('p1').textContent = 'Loading....';
     document.getElementById('p2').textContent = 'Please wait';
     try {
-        let response = await fetch(url,{
-         "credentials": "same-origin",
-        });
         console.log(1, url);
+        let response = await fetch(url,{
+         "method":"GET",
+         "credentials": "same-origin",
+          "mode": "cors"
+        });
+        console.log(2, url);
         if (response.status !== 200){
             throw Error;
         }

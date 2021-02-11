@@ -4,7 +4,9 @@ async function fetchSomeone(url) {
     document.getElementById('p1').textContent = 'Loading....';
     document.getElementById('p2').textContent = 'Please wait';
     try {
-        let response = await fetch(url);
+        let response = await fetch(url,{
+         "credentials": "same-origin",
+        });
         if (response.status !== 200){
             throw Error;
         }

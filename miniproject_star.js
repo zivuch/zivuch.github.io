@@ -18,6 +18,7 @@ async function fetchSomeone(url) {
 async function findSomeone(){
     let rnd = parseInt(Math.random()*83)
     let url = 'https://swapi.dev/api/people/'+rnd;
+    console.log(url);
     fetchSomeone(url);
 }
 

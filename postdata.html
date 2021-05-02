@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form name="person">
+      <input name="name" value="John">
+      <input name="surname" value="Smith">
+    </form>
+
+    <script>
+      // pre-fill FormData from the form
+      // let formData = new FormData(document.forms.person);
+      // console.log(formData);
+
+      // add one more field
+      // formData.append("middle", "Lee");
+      // console.log(formData);
+
+      // send it out
+      // let xhr = new XMLHttpRequest();
+      // xhr.open("POST", "https://javascript.info/article/xmlhttprequest/post/user");
+      // xhr.send(formData);
+
+      // xhr.onload = () => console.log(xhr.response);
+
+      let xhr = new XMLHttpRequest();
+
+      let json = JSON.stringify({
+        name: "John",
+        surname: "Smith"
+      });
+
+      xhr.open("POST", 'https://javascript.info/submit',{ mode:'no-cors'})
+      xhr.setRequestHeader('Access-Control-Allow-Origin', "*");
+      xhr.setRequestHeader('Access-Control-Allow-Headers', "*");
+      xhr.withCredentials = false;
+      xhr.send(json);
+
+      xhr.onload = () => console.log(xhr.response);
+    </script>
+  </body>
+</html>
